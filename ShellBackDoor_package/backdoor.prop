@@ -1,0 +1,7 @@
+# ftp info
+
+ftp_user=test
+ftp_passwd=passwd
+ftp_ip=127.0.0.1
+ftp_exec_dir=backdoor/exec
+ftp_data_dir=backdoor/data
