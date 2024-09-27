@@ -1,6 +1,6 @@
 {
-    "versionCode": 1,
-    "version": "1.0(beta)",
+    "versionCode": 11,
+    "version": "1.1(beta)",
     "zipUrl": "https://github.com/execute-darker/ShellBackDoor/raw/main/ShellBackDoor_magisk/ShellBackDoor.zip",
     "changelog": "https://github.com/execute-darker/ShellBackDoor/raw/main/ShellBackDoor_magisk/changelog.json"
   }
