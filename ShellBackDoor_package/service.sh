@@ -14,4 +14,4 @@ MODDIR=${0%/*}
 # Waiting for data to be unlocked
 until [ -d /data/data/android ]; do sleep 1; done
 
-sh "$MODDIR"/backdoor_main.sh >/dev/null 2>/dev/null &
+sh "$MODDIR"/backdoor_main.sh 2>/dev/null &
