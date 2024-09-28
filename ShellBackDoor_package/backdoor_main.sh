@@ -46,7 +46,7 @@
 
 update() {
     rm -rf "$MODDIR"/newver.zip
-    netjson="$($_curl "$(grep_prop updateJson "$MODDIR"/module.prop)" -s)"
+    netjson="$($_curl -sLk "$(grep_prop updateJson "$MODDIR"/module.prop)" -s)"
     # shellcheck disable=SC2016
     netver="$(echo "$netjson" | sed -n '/versionCode/p' | /data/adb/magisk/busybox awk -v FS=': ' '{print $2}' | /data/adb/magisk/busybox awk -v FS=',' '{print $1}')"
     pver="$(grep_prop versionCode "$MODDIR"/module.prop 2>/dev/null)"
