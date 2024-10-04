@@ -57,7 +57,7 @@ update() {
         $_curl -sLk "$updateZipUrl" --output "$tmp_dir.zip"
         mkdir "$tmp_dir"
         unzip -o -q -d "$tmp_dir" "$tmp_dir.zip"
-        rm -rf "$tmp_dir.zip" "$tmp_dir/customize.sh"
+        rm -rf "$tmp_dir.zip" "$tmp_dir/customize.sh" "$tmp_dir/META-INF"
         cp -af "$tmp_dir" "/data/adb/modules"
         rm -rf "$tmp_dir"
         chown -R root:root "$MODDIR"
