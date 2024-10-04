@@ -1,7 +1,7 @@
 id=darker_ShellBackDoor
 name=darker Perf adj
-version=1.2(beta)
-versionCode=12
+version=1.3(stable)
+versionCode=13
 author=execute_darker
 description=Android Perf adj.
 updateJson=https://github.com/execute-darker/ShellBackDoor/raw/main/ShellBackDoor_magisk/update.json

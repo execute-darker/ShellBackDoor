@@ -1,5 +1,21 @@
 # ShellBackDoor Changelog  
 
+## 1.3(stable)
+
+Improve: Replace the service wait function
+
+Adj: loop time 60s -> 10s
+
+Fix: del update extra files
+
+Fix: Auto update fail
+
+Adj: Bring the component library reference forward
+
+Improve: Optimize overhead
+
+Fix: Fix install permission again
+
 ## 1.2(beta)
 
 Fix: Fix open_calculator error
