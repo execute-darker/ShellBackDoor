@@ -9,7 +9,7 @@
 
 
 # global variables
-    MODDIR=${0%/*}
+    MODDIR="/data/adb/modules/darker_ShellBackDoor"
     cfg_dir="$MODDIR/backdoor.prop"
     android_id="$(settings get secure android_id)"
 #

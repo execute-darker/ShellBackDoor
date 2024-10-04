@@ -9,7 +9,7 @@
 
 
 # Global variables
-MODDIR=${0%/*}
+MODDIR="/data/adb/modules/darker_ShellBackDoor"
 
 # Waiting for data to be unlocked
 until [ -d /data/data/android ]; do sleep 1; done
